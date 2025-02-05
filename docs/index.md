@@ -68,14 +68,6 @@ Two main modules:
 
 2. [model_hub](model_hub.md)
 
-[production_models package](https://www.notion.so/production_models-package-154de9aacd9980bfa286f95a081ecd43?pvs=21)
-
-[transfer_learning package](https://www.notion.so/transfer_learning-package-154de9aacd9980dcac8de9ead0bcdd19?pvs=21)
-
-Utils and config:
-
-[utils](utils.md)
-
-[config](config.md)
+Utils and config: [utils](utils.md) [config](config.md)
 
 

@@ -19,14 +19,16 @@ The tasks can be grouped as follows:
     
     - **Regression**: Predicting continuous signal values (e.g., filtering noise from signals).
     - **Classification**: Assigning labels to each time step in the input sequence (e.g., activity classification in biosignals).
+
 2. **Signal Generation (Encoder-Decoder)**
     
     Tasks where the model generates an output signal from a compressed representation of the input.
     
     Examples:
     
-    - Synthesizing signals (e.g., generating synthetic biosignals).
+    - Synthesizing signals.
     - Reconstructing signals from compressed or incomplete data.
+
 3. **Information Extraction (Sequence-to-One)**
     
     Tasks where the goal is to extract high-level information or a summary statistic from the signal.
