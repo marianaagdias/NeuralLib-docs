@@ -1,0 +1,39 @@
+site_name: NeuralLib Documentation
+theme:
+  name: material  # Uses Material for MkDocs theme
+  palette:
+    scheme: default
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.instant
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.annotate
+
+nav:
+  - Home: index.md
+  - Modules:
+      - Architectures:
+          - Overview: architectures.md
+          - Architecture Class: base.md
+          - Biosignals architectures: biosignals_architectures.md
+          - Training deployment: training_deployment.md
+      - Model Hub: model_hub.md
+  - Utils:
+      - Overview: utils.md
+      - Dataset requirements: dataset_requirements.md
+  - Configuration: config.md
+
+
+markdown_extensions:
+  - toc
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.emoji
+  - pymdownx.tasklist
+
+repo_url: "https://github.com/marianaagdias/NeuralLib"
