@@ -6,7 +6,7 @@ To ensure compatibility with `DatasetSequence`, datasets should be **preprocesse
 
 ## **1. General Requirements**
 
-- **Preprocessing**: Data should be saved in a **preprocessed** state, meaning all necessary filtering, feature extraction, and transformations (except min-max normalization, which can optionally be performed when passing the signals to the model) should be done before loading into the dataset.
+- **Preprocessing**: Data should be saved in a **preprocessed** state, meaning all necessary filtering or transformations (except min-max normalization, which can optionally be performed when passing the signals to the model) should be done before loading into the dataset.
 - **File Format**: Data should be stored as `.npy` files for efficient loading.
 - **Consistency**: Each input sample (`X`) must have a corresponding output (`Y`) with the **same filename** to ensure proper mapping (read next section).
 
@@ -67,7 +67,7 @@ x/train/sample_001.npy  ↔  y/train/sample_001.npy
         - `[1, num_classes]` (classification)
         - `[1, 1]` (regression)
 - For **sequence-to-sequence tasks**:
-    - Each `item_y` must have shape `[seq_len, num_features]` and match `item_x`.
+    - Each `item_y` must have shape `[seq_len, num_features]` and match `item_x` if it's regression and `[seq_len, num_classes]` if it's classification (both multi label and multi class).
 - Automatic Formatting by `DatasetSequence`:
     - If output is a **1D signal**, it is reshaped to `[seq_len, 1]` if seq2seq or `[1, num_classes]` if seq2one.
     - If output is incorrectly stored as `[num_features, seq_len]`, it is **transposed** before returning (seq2seq).

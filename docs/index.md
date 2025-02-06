@@ -37,7 +37,7 @@ NeuralLib is designed to support two types of users:
     
 - **Developers & Researchers** (GitHub users)
     
-    These users need **full access to the library's source code** for model development, training, and fine-tuning. They can:
+    These users need **full access to the [library's source code](https://github.com/marianaagdias/NeuralLib/tree/main?tab=readme-ov-file)** for model development, training, and fine-tuning. They can:
     
     - Train new models from scratch using the `architectures` module
     - Test and validate models before sharing them with the community
