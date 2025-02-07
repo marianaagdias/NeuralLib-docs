@@ -542,6 +542,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#1-seq2one-true-predicts-a-single-output-for-the-entire-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Seq2one = True (Predicts a single output for the entire sequence)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-seq2seq-or-encoder-decoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Seq2seq or Encoder-Decoder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#module-structure" class="md-nav__link">
     <span class="md-ellipsis">
       Module Structure
@@ -881,6 +899,71 @@
 </ul>
 </li>
 </ol>
+<h3 id="1-seq2one-true-predicts-a-single-output-for-the-entire-sequence"><strong>1. Seq2one = True (Predicts a single output for the entire sequence)</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Loss Function</th>
+<th>Correct <code>y</code> Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1.1. Classification</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>1.1.1 Multi-label (including binary, <code>num_classes=1</code>)</strong></td>
+<td>BCEWithLogitsLoss</td>
+<td><strong><code>[1, num_classes]</code></strong> <em>(batch size will be added automatically in DataLoader)</em></td>
+</tr>
+<tr>
+<td><strong>1.1.2 Multiclass</strong></td>
+<td>CrossEntropyLoss</td>
+<td><strong><code>() (scalar)</code></strong> <em>(Must be a single class index, not one-hot encoded)</em></td>
+</tr>
+<tr>
+<td><strong>1.2 Regression</strong></td>
+<td>MSELoss</td>
+<td><strong><code>[1, num_features]</code></strong> <em>(if predicting multiple values, otherwise <code>[1, 1]</code> if a single scalar)</em></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="2-seq2seq-or-encoder-decoder"><strong>2. Seq2seq or Encoder-Decoder</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Loss Function</th>
+<th>Correct <code>y</code> Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2.1. Classification</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2.1.1 Multi-label (including binary, <code>num_classes=1</code>)</strong></td>
+<td>BCEWithLogitsLoss</td>
+<td><strong><code>[sequence_length, num_classes]</code></strong> <em>(Each timestep has a multi-label prediction with <code>num_classes</code> probabilities)</em></td>
+</tr>
+<tr>
+<td><strong>2.1.2 Multiclass</strong></td>
+<td>CrossEntropyLoss</td>
+<td><strong><code>[sequence_length]</code></strong> <em>(Each timestep gets a single class index, like <code>torch.LongTensor([1, 2, 0, 3])</code>)</em></td>
+</tr>
+<tr>
+<td><strong>2.2 Regression</strong></td>
+<td>MSELoss</td>
+<td><strong><code>[sequence_length, num_features]</code></strong> <em>(Matches input shape, as it predicts a value at each timestep)</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="module-structure">Module Structure</h2>
 <h3 id="classes"><strong>Classes</strong></h3>
 <h3 id="1-gruseq2seq">1. <code>GRUseq2seq</code></h3>
