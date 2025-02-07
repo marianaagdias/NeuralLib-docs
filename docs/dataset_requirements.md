@@ -63,15 +63,20 @@ x/train/sample_001.npy  ↔  y/train/sample_001.npy
 ### **Output Data (Y) Format**
 
 - For **sequence-to-one tasks** (e.g., classification, regression):
-    - Each `item_y` should be a **single value or vector** of shape:
-        - `[1, num_classes]` (classification)
-        - `[1, 1]` (regression)
+    - Each `item_y` should be a **single value or vector**, with shape:
+        - **Multiclass classification (single-label):** `[1]` (a single integer representing the class index).
+        - **Multilabel classification:** `[1, num_classes]` (a binary vector where each position indicates whether a class is active).
+        - **Regression:** `[1, 1]` (a single scalar value for continuous outputs).
+
 - For **sequence-to-sequence tasks**:
-    - Each `item_y` must have shape `[seq_len, num_features]` and match `item_x` if it's regression and `[seq_len, num_classes]` if it's classification (both multi label and multi class).
-- Automatic Formatting by `DatasetSequence`:
-    - If output is a **1D signal**, it is reshaped to `[seq_len, 1]` if seq2seq or `[1, num_classes]` if seq2one.
-    - If output is incorrectly stored as `[num_features, seq_len]`, it is **transposed** before returning (seq2seq).
-    - If output is a single value, it is reshaped to `[1, 1]` (seq2one).
+    - **Regression:** Each `item_y` must have shape `[seq_len, num_features]`, matching `item_x`.
+    - **Multiclass classification (single-label):** Each `item_y` should have shape `[seq_len]`, where each timestep contains an integer representing the class.
+    - **Multilabel classification:** Each `item_y` should have shape `[seq_len, num_classes]`, where each timestep has a binary vector for active classes.
+
+- **Automatic Formatting by `DatasetSequence`:**
+    - If output is a **1D signal**, it is reshaped to `[seq_len, 1]` if `seq2seq`, or `[1, num_classes]` if `seq2one` **for multilabel classification**.
+    - If output is incorrectly stored as `[num_features, seq_len]`, it is **transposed** before returning (for `seq2seq`).
+    - If output is a **single value**, it is reshaped to `[1, 1]` (for `seq2one` **regression**).
 
 ### **Sequence lengths**
 

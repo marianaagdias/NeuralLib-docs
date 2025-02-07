@@ -38,6 +38,26 @@ The tasks can be grouped as follows:
     - **Regression**: Predicting a continuous value (e.g., mean heart rate over a signal segment).
     - **Classification**: Determining a single label for the entire input sequence (e.g., detecting arrhythmia).
 
+### **1. Seq2one = True (Predicts a single output for the entire sequence)**
+
+| Task | Loss Function | Correct `y` Shape |
+| --- | --- | --- |
+| **1.1. Classification** |  |  |
+| **1.1.1 Multi-label (including binary, `num_classes=1`)** | BCEWithLogitsLoss | **`[1, num_classes]`** *(batch size will be added automatically in DataLoader)* |
+| **1.1.2 Multiclass** | CrossEntropyLoss | **`() (scalar)`** *(Must be a single class index, not one-hot encoded)* |
+| **1.2 Regression** | MSELoss | **`[1, num_features]`** *(if predicting multiple values, otherwise `[1, 1]` if a single scalar)* |
+
+---
+
+### **2. Seq2seq or Encoder-Decoder**
+
+| Task | Loss Function | Correct `y` Shape |
+| --- | --- | --- |
+| **2.1. Classification** |  |  |
+| **2.1.1 Multi-label (including binary, `num_classes=1`)** | BCEWithLogitsLoss | **`[sequence_length, num_classes]`** *(Each timestep has a multi-label prediction with `num_classes` probabilities)* |
+| **2.1.2 Multiclass** | CrossEntropyLoss | **`[sequence_length]`** *(Each timestep gets a single class index, like `torch.LongTensor([1, 2, 0, 3])`)* |
+| **2.2 Regression** | MSELoss | **`[sequence_length, num_features]`** *(Matches input shape, as it predicts a value at each timestep)* |
+
 
 ## Module Structure
 

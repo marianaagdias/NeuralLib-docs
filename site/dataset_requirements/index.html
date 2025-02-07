@@ -790,7 +790,7 @@
 <hr />
 <h2 id="1-general-requirements"><strong>1. General Requirements</strong></h2>
 <ul>
-<li><strong>Preprocessing</strong>: Data should be saved in a <strong>preprocessed</strong> state, meaning all necessary filtering, feature extraction, and transformations (except min-max normalization, which can optionally be performed when passing the signals to the model) should be done before loading into the dataset.</li>
+<li><strong>Preprocessing</strong>: Data should be saved in a <strong>preprocessed</strong> state, meaning all necessary filtering or transformations (except min-max normalization, which can optionally be performed when passing the signals to the model) should be done before loading into the dataset.</li>
 <li><strong>File Format</strong>: Data should be stored as <code>.npy</code> files for efficient loading.</li>
 <li><strong>Consistency</strong>: Each input sample (<code>X</code>) must have a corresponding output (<code>Y</code>) with the <strong>same filename</strong> to ensure proper mapping (read next section).</li>
 </ul>
@@ -848,7 +848,7 @@
 </ul>
 </li>
 <li>For <strong>sequence-to-sequence tasks</strong>:<ul>
-<li>Each <code>item_y</code> must have shape <code>[seq_len, num_features]</code> and match <code>item_x</code>.</li>
+<li>Each <code>item_y</code> must have shape <code>[seq_len, num_features]</code> and match <code>item_x</code> if it's regression and <code>[seq_len, num_classes]</code> if it's classification (both multi label and multi class).</li>
 </ul>
 </li>
 <li>Automatic Formatting by <code>DatasetSequence</code>:<ul>
