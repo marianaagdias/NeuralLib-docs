@@ -839,22 +839,31 @@
 </ul>
 <h3 id="output-data-y-format"><strong>Output Data (Y) Format</strong></h3>
 <ul>
-<li>For <strong>sequence-to-one tasks</strong> (e.g., classification, regression):<ul>
-<li>Each <code>item_y</code> should be a <strong>single value or vector</strong> of shape:<ul>
-<li><code>[1, num_classes]</code> (classification)</li>
-<li><code>[1, 1]</code> (regression)</li>
+<li>
+<p>For <strong>sequence-to-one tasks</strong> (e.g., classification, regression):</p>
+<ul>
+<li>Each <code>item_y</code> should be a <strong>single value or vector</strong>, with shape:<ul>
+<li><strong>Multiclass classification (single-label):</strong> <code>[1]</code> (a single integer representing the class index).</li>
+<li><strong>Multilabel classification:</strong> <code>[1, num_classes]</code> (a binary vector where each position indicates whether a class is active).</li>
+<li><strong>Regression:</strong> <code>[1, 1]</code> (a single scalar value for continuous outputs).</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>For <strong>sequence-to-sequence tasks</strong>:<ul>
-<li>Each <code>item_y</code> must have shape <code>[seq_len, num_features]</code> and match <code>item_x</code> if it's regression and <code>[seq_len, num_classes]</code> if it's classification (both multi label and multi class).</li>
+<li>
+<p>For <strong>sequence-to-sequence tasks</strong>:</p>
+<ul>
+<li><strong>Regression:</strong> Each <code>item_y</code> must have shape <code>[seq_len, num_features]</code>, matching <code>item_x</code>.</li>
+<li><strong>Multiclass classification (single-label):</strong> Each <code>item_y</code> should have shape <code>[seq_len]</code>, where each timestep contains an integer representing the class.</li>
+<li><strong>Multilabel classification:</strong> Each <code>item_y</code> should have shape <code>[seq_len, num_classes]</code>, where each timestep has a binary vector for active classes.</li>
 </ul>
 </li>
-<li>Automatic Formatting by <code>DatasetSequence</code>:<ul>
-<li>If output is a <strong>1D signal</strong>, it is reshaped to <code>[seq_len, 1]</code> if seq2seq or <code>[1, num_classes]</code> if seq2one.</li>
-<li>If output is incorrectly stored as <code>[num_features, seq_len]</code>, it is <strong>transposed</strong> before returning (seq2seq).</li>
-<li>If output is a single value, it is reshaped to <code>[1, 1]</code> (seq2one).</li>
+<li>
+<p><strong>Automatic Formatting by <code>DatasetSequence</code>:</strong></p>
+<ul>
+<li>If output is a <strong>1D signal</strong>, it is reshaped to <code>[seq_len, 1]</code> if <code>seq2seq</code>, or <code>[1, num_classes]</code> if <code>seq2one</code> <strong>for multilabel classification</strong>.</li>
+<li>If output is incorrectly stored as <code>[num_features, seq_len]</code>, it is <strong>transposed</strong> before returning (for <code>seq2seq</code>).</li>
+<li>If output is a <strong>single value</strong>, it is reshaped to <code>[1, 1]</code> (for <code>seq2one</code> <strong>regression</strong>).</li>
 </ul>
 </li>
 </ul>

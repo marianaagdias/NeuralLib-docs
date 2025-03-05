@@ -7,9 +7,9 @@ The `architectures` subpackage provides a framework for defining, training, and 
 
 ✔ **Training from scratch and retraining** with configurable hyperparameters.
 
-✔**Model checkpointing & hyperparameter optimization via grid search** with PyTorch Lightning.
+✔ **Model checkpointing & hyperparameter optimization via grid search** with PyTorch Lightning.
 
-✔**Integration with TensorBoard** for visualization of training metrics.
+✔ **Integration with TensorBoard** for visualization of training metrics.
 
 ---
 

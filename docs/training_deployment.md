@@ -45,8 +45,6 @@ model.train_from_scratch(
 Alternatively, you can use a **higher-level function** to automate training:
 
 ```python
-python
-CopiarEditar
 from NeuralLib.training import train_architecture_from_scratch
 
 train_architecture_from_scratch(
@@ -64,8 +62,6 @@ train_architecture_from_scratch(
 If you have a checkpoint from a previous training session, you can **continue training**:
 
 ```python
-python
-CopiarEditar
 from NeuralLib.training import retrain_architecture
 
 retrain_architecture(
@@ -79,8 +75,6 @@ retrain_architecture(
 You can also **load and retrain models from Hugging Face**:
 
 ```python
-python
-CopiarEditar
 retrain_architecture(
     architecture_name="GRUseq2seq",
     train_params={"batch_size": 32, "epochs": 20},
@@ -96,8 +90,6 @@ retrain_architecture(
 Grid search can be used to **find the best hyperparameters** automatically:
 
 ```python
-python
-CopiarEditar
 from NeuralLib.training import run_grid_search
 
 best_model = run_grid_search(
@@ -123,8 +115,6 @@ Once a model has been trained, you may need to **post-process** its output. This
 ### **Binary Peak Detection**
 
 ```python
-python
-CopiarEditar
 from NeuralLib.processing import post_process_peaks_binary
 
 predictions = model.predict(input_signal)
@@ -155,8 +145,6 @@ Once a model is trained, you can **upload it to Hugging Face** to make it public
 To ensure proper documentation, you must create a structured `README.md`:
 
 ```python
-python
-CopiarEditar
 from NeuralLib.upload import create_readme
 
 create_readme(
@@ -183,8 +171,6 @@ This automatically formats:
 To push the model to **Hugging Face Model Hub**:
 
 ```python
-python
-CopiarEditar
 from NeuralLib.upload import upload_production_model
 
 upload_production_model(

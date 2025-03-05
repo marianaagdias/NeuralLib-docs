@@ -38,7 +38,7 @@ The tasks can be grouped as follows:
     - **Regression**: Predicting a continuous value (e.g., mean heart rate over a signal segment).
     - **Classification**: Determining a single label for the entire input sequence (e.g., detecting arrhythmia).
 
-### **1. Seq2one = True (Predicts a single output for the entire sequence)**
+### **1. Seq2one (Predicts a single output for the entire sequence)**
 
 | Task | Loss Function | Correct `y` Shape |
 | --- | --- | --- |
