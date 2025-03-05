@@ -868,9 +868,7 @@
 <span class="p">)</span>
 </code></pre></div>
 <p>Alternatively, you can use a <strong>higher-level function</strong> to automate training:</p>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="n">CopiarEditar</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.training</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_architecture_from_scratch</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.training</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_architecture_from_scratch</span>
 
 <span class="n">train_architecture_from_scratch</span><span class="p">(</span>
     <span class="n">architecture_name</span><span class="o">=</span><span class="s2">&quot;GRUseq2seq&quot;</span><span class="p">,</span>
@@ -881,9 +879,7 @@
 <hr />
 <h3 id="retraining-an-existing-model"><strong>Retraining an Existing Model</strong></h3>
 <p>If you have a checkpoint from a previous training session, you can <strong>continue training</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="n">CopiarEditar</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.training</span><span class="w"> </span><span class="kn">import</span> <span class="n">retrain_architecture</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.training</span><span class="w"> </span><span class="kn">import</span> <span class="n">retrain_architecture</span>
 
 <span class="n">retrain_architecture</span><span class="p">(</span>
     <span class="n">architecture_name</span><span class="o">=</span><span class="s2">&quot;GRUseq2seq&quot;</span><span class="p">,</span>
@@ -892,9 +888,7 @@
 <span class="p">)</span>
 </code></pre></div>
 <p>You can also <strong>load and retrain models from Hugging Face</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="n">CopiarEditar</span>
-<span class="n">retrain_architecture</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="n">retrain_architecture</span><span class="p">(</span>
     <span class="n">architecture_name</span><span class="o">=</span><span class="s2">&quot;GRUseq2seq&quot;</span><span class="p">,</span>
     <span class="n">train_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="s2">&quot;epochs&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
     <span class="n">hugging_face_model</span><span class="o">=</span><span class="s2">&quot;marianaagdias/GRU_ecg_model&quot;</span>
@@ -903,9 +897,7 @@
 <hr />
 <h3 id="hyperparameter-optimization"><strong>Hyperparameter Optimization</strong></h3>
 <p>Grid search can be used to <strong>find the best hyperparameters</strong> automatically:</p>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="n">CopiarEditar</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.training</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_grid_search</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.training</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_grid_search</span>
 
 <span class="n">best_model</span> <span class="o">=</span> <span class="n">run_grid_search</span><span class="p">(</span>
     <span class="n">architecture_name</span><span class="o">=</span><span class="s2">&quot;GRUseq2seq&quot;</span><span class="p">,</span>
@@ -922,9 +914,7 @@
 <h2 id="2-post-processing-model-outputs"><strong>2. Post-Processing Model Outputs</strong></h2>
 <p>Once a model has been trained, you may need to <strong>post-process</strong> its output. This is particularly useful for peak detection or classification thresholds.</p>
 <h3 id="binary-peak-detection"><strong>Binary Peak Detection</strong></h3>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="n">CopiarEditar</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">post_process_peaks_binary</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">post_process_peaks_binary</span>
 
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_signal</span><span class="p">)</span>
 
@@ -943,9 +933,7 @@
 <p>Once a model is trained, you can <strong>upload it to Hugging Face</strong> to make it publicly available.</p>
 <h3 id="generating-a-model-card"><strong>Generating a Model Card</strong></h3>
 <p>To ensure proper documentation, you must create a structured <code>README.md</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="n">CopiarEditar</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.upload</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_readme</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.upload</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_readme</span>
 
 <span class="n">create_readme</span><span class="p">(</span>
     <span class="n">hparams_file</span><span class="o">=</span><span class="s2">&quot;model/hparams.yaml&quot;</span><span class="p">,</span>
@@ -965,9 +953,7 @@
 <hr />
 <h3 id="uploading-the-model"><strong>Uploading the Model</strong></h3>
 <p>To push the model to <strong>Hugging Face Model Hub</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">python</span>
-<span class="n">CopiarEditar</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.upload</span><span class="w"> </span><span class="kn">import</span> <span class="n">upload_production_model</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NeuralLib.upload</span><span class="w"> </span><span class="kn">import</span> <span class="n">upload_production_model</span>
 
 <span class="n">upload_production_model</span><span class="p">(</span>
     <span class="n">local_dir</span><span class="o">=</span><span class="s2">&quot;models/my_model&quot;</span><span class="p">,</span>
